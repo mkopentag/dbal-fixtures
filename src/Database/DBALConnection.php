@@ -23,9 +23,16 @@ class DBALConnection implements Connection
     {
         $insert = Insert::into($table, $row);
 
-        $this->connection->executeUpdate($insert->toSQL($this->connection), $insert->parameters());
-
-        $row->assignId($this->connection->lastInsertId());
+        if ($this->connection->getDatabasePlatform()->getName() === 'postgresql') {
+            $stmt = $this->connection->executeQuery(
+                $insert->toSQL($this->connection, true),
+                $insert->parameters()
+            );
+            $row->assignUuid($stmt->fetchColumn());
+        } else {
+            $this->connection->executeUpdate($insert->toSQL($this->connection), $insert->parameters());
+            $row->assignId($this->connection->lastInsertId());
+        }
     }
 
     /**
