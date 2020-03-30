@@ -37,6 +37,18 @@ class Row
     }
 
     /**
+     * It will skip the assignment if there's already a value for the primary key column
+     */
+    public function assignUuid(string $id): void
+    {
+        if (isset($this->values[$this->primaryKeyColumn])) {
+            return; // This is not an auto-generated key
+        }
+
+        $this->values[$this->primaryKeyColumn] = $id;
+    }
+
+    /**
      * @return mixed Most common types are: int (auto_increment) and string (uuid)
      */
     public function id()
