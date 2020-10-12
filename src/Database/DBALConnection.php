@@ -28,7 +28,7 @@ class DBALConnection implements Connection
                 $insert->toSQL($this->connection, true),
                 $insert->parameters()
             );
-            $row->assignUuid($stmt->fetchColumn());
+            $row->assignId($stmt->fetchColumn());
         } else {
             $this->connection->executeUpdate($insert->toSQL($this->connection), $insert->parameters());
             $row->assignId($this->connection->lastInsertId());

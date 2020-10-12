@@ -10,3 +10,4 @@ phpunit.xml
 
 # Docs
 /.couscous
+.idea

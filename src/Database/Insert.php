@@ -22,14 +22,14 @@ class Insert
         return new Insert($table, $row);
     }
 
-    public function toSQL(Connection $connection, bool $isReturningField = false): string
+    public function toSQL(Connection $connection, bool $withReturningField = false): string
     {
         return sprintf(
             'INSERT INTO %s (%s) VALUES (%s) %s',
             $this->table,
             implode(', ', $this->quoteIdentifiers($connection)),
             implode(', ', $this->row->placeholders()),
-            ($isReturningField) ? 'RETURNING id' : ''
+            $withReturningField ? sprintf('RETURNING %s', $this->row->getPrimaryKeyColumn()) : ''
         );
     }
 
