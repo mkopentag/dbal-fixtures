@@ -27,20 +27,15 @@ class Row
     /**
      * It will skip the assignment if there's already a value for the primary key column
      */
-    public function assignId(int $id): void
+    public function assignId($id): void
     {
-        if (isset($this->values[$this->primaryKeyColumn])) {
-            return; // This is not an auto-generated key
+        if (!(is_string($id) || is_int($id))) {
+            throw new \InvalidArgumentException(\sprintf(
+                'ID must be string or int, %s given.',
+                gettype($id)
+            ));
         }
 
-        $this->values[$this->primaryKeyColumn] = $id;
-    }
-
-    /**
-     * It will skip the assignment if there's already a value for the primary key column
-     */
-    public function assignUuid(string $id): void
-    {
         if (isset($this->values[$this->primaryKeyColumn])) {
             return; // This is not an auto-generated key
         }
@@ -95,5 +90,10 @@ class Row
             }
         }
         return $placeholders;
+    }
+
+    public function getPrimaryKeyColumn(): string
+    {
+        return $this->primaryKeyColumn;
     }
 }
