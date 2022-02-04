@@ -1,5 +1,5 @@
 <?php
 return [
-    'url' => 'mysql://' . $_ENV['user'] . ':' . $_ENV['password'] . '@localhost/test_fixture',
+    'url' => 'mysql://dbal-fixtures:dbal-fixtures@127.0.0.1/test_fixture',
     'driver' => 'pdo_mysql',
 ];

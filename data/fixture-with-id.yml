@@ -1,4 +1,5 @@
-states:
+table: states
+items:
     state_1:
         url: "puebla"
         name: "Puebla"

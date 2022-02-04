@@ -11,30 +11,29 @@ $ sqlite3 test_db.sq3 < data/database.sql
 2. Save the following fixture in a file name `stations.yml`.
 
 ```yaml
-stations:
-    station_[1..3]:
-        name: "${company}"
-        social_reason: "${bs}"
-        address_line_1: "${streetAddress}"
-        address_line_2: "${secondaryAddress}}"
-        location: "${city}"
-        latitude: "${latitude}"
-        longitude: "${longitude}"
-        created_at: "${date('Y-m-d H:i:s', 'yesterday')}"
-        last_updated_at: "${date('Y-m-d H:i:s')}"
-reviews:
-    review_[1..2]:
-        comment: "${realText}"
-        stars: "${numberBetween(1, 2)}"
-        station_id: "@station_1"
-    review_[3..5]:
-        comment: "${realText}"
-        stars: "${numberBetween(3, 5)}"
-        station_id: "@station_2"
-    review_6:
-        comment: "El servicio es excelente"
-        stars: 5
-        station_id: "@station_3"
+table: stations
+items:
+  station_1:
+    name: "CASMEN GASOL"
+    social_reason: "CASMEN SA CV"
+    address_line_1: "23 PTE NO 711"
+    address_line_2: "EL CARMEN"
+    location: "PUEBLA PUE"
+    latitude: 19.03817
+    longitude: -98.20737
+    created_at: "2013-10-06 00:00:00"
+    last_updated_at: "2013-10-06 00:00:00"
+  station_2:
+    name: "COMBUSTIBLES JV"
+    social_reason: "COMBUSTIBLES JV SA CV"
+    address_line_1: "24 SUR NO 507"
+    address_line_2: "CENTRO"
+    location: "PUEBLA PUE"
+    latitude: 19.03492
+    longitude: -98.18554
+    created_at: "2013-10-06 00:00:00"
+    last_updated_at: "2013-10-06 00:00:00"
+
 ```
 
 3. Use the following code to load the fixture in a file named `loader.php`.

@@ -6,6 +6,7 @@
  */
 namespace ComPHPPuebla\Fixtures\Loaders;
 
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -22,7 +23,7 @@ class YamlLoader implements Loader
     }
 
     /**
-     * @throws \Symfony\Component\Yaml\Exception\ParseException
+     * @throws ParseException
      */
     public function load(string $path): array
     {

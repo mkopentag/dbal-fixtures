@@ -2,15 +2,28 @@
 
 This library lets you load fake/testing data into your database using a YAML file. 
 
-The following example will produce a new row in the table `reviews`
-with the values `El servicio es muy malo`, `2`, and `1` for the columns `comment`,
-`stars` and `station_id` respectively. Notice that every row has an **identifier**,
-in this example it is `review_1`.
-
 ```yaml
-reviews:
-    review_1:
-        comment: "El servicio es muy malo"
-        stars: 2
-        station_id: 1
+table: stations
+items:
+  station_1:
+    name: "CASMEN GASOL"
+    social_reason: "CASMEN SA CV"
+    address_line_1: "23 PTE NO 711"
+    address_line_2: "EL CARMEN"
+    location: "PUEBLA PUE"
+    latitude: 19.03817
+    longitude: -98.20737
+    created_at: "2013-10-06 00:00:00"
+    last_updated_at: "2013-10-06 00:00:00"
+  station_2:
+    name: "COMBUSTIBLES JV"
+    social_reason: "COMBUSTIBLES JV SA CV"
+    address_line_1: "24 SUR NO 507"
+    address_line_2: "CENTRO"
+    location: "PUEBLA PUE"
+    latitude: 19.03492
+    longitude: -98.18554
+    created_at: "2013-10-06 00:00:00"
+    last_updated_at: "2013-10-06 00:00:00"
+
 ```

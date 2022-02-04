@@ -15,7 +15,8 @@ class YamlLoaderTest extends TestCase
     public function it_reads_and_parses_a_fixture_file()
     {
         $states = [
-            'states' => [
+            'table' => 'states',
+            'items' => [
                 'state_1' => [
                     'url' => 'puebla',
                     'name' => 'Puebla',

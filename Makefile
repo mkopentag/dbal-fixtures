@@ -1,6 +1,9 @@
 SHELL = /bin/bash
 
-.PHONY: test fix
+.PHONY: start-mysql test fix
+
+start-mysql:
+	docker run -itd --rm --name dbal-fixtures-mysql -e MYSQL_ROOT_PASSWORD=dbal-fixtures -e MYSQL_USER=dbal-fixtures -e MYSQL_PASSWORD=dbal-fixtures -e MYSQL_DATABASE=test_fixture -p 3306:3306 mysql:5.7
 
 test:
 	@php bin/phpunit

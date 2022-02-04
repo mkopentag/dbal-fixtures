@@ -19,26 +19,15 @@ class FixtureWithOverrideTest extends TestCase
      */
     function it_loads_a_fixture_with_override_data(ConnectionFactory $factory)
     {
-        $overrideData = [
-            '[name_1]' => 'CASMEN GASOL',
-            '[name_2]' => 'COMBUSTIBLES JV',
-        ];
-
         $connection = $factory->connect();
         $fixtures = new Fixture(new DBALConnection($connection));
         $database = new TestDatabase($connection);
 
-        $fixtures->loadWithOverride(
-            "$this->path/fixture-with-override-aliases.yml",
-            $overrideData
-        );
+        $fixtures->loadWithOverride("$this->path/fixture-with-override-aliases.yml", ['name' => 'CASMEN GASOL'], 'station_1');
 
         $station1 = $database->findStationNamed('CASMEN GASOL');
-        $station2 = $database->findStationNamed('COMBUSTIBLES JV');
 
-        // Stations have been saved
         $this->assertGreaterThan(0, $station1['station_id']);
-        $this->assertGreaterThan(0, $station2['station_id']);
     }
 
     /** @before */

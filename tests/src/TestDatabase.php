@@ -7,6 +7,7 @@
 namespace ComPHPPuebla\Fixtures;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 
 class TestDatabase
 {
@@ -18,33 +19,27 @@ class TestDatabase
         $this->connection = $connection;
     }
 
-    /** @throws \Doctrine\DBAL\DBALException*/
+    /** @throws DBALException*/
     public function findStationNamed(string $name): array
     {
-        return $this->connection->executeQuery('SELECT * FROM stations WHERE name = ?', [$name])->fetch();
+        return $this->connection->executeQuery('SELECT * FROM stations WHERE name = ?', [$name])->fetchAssociative();
     }
 
-    /** @throws \Doctrine\DBAL\DBALException*/
-    public function findReviewRatedWith(int $stars): array
+    /** @throws DBALException*/
+    public function findStateWithUrl(string $url): array
     {
-        return $this->connection->executeQuery('SELECT * FROM reviews WHERE stars = ?', [$stars])->fetch();
+        return $this->connection->executeQuery('SELECT * FROM states WHERE url = ?', [$url])->fetchAssociative();
     }
 
-    /** @throws \Doctrine\DBAL\DBALException*/
+    /** @throws DBALException*/
+    public function findRoleNamed(string $name): array
+    {
+        return $this->connection->executeQuery('SELECT * FROM roles WHERE name = ?', [$name])->fetchAssociative();
+    }
+
+    /** @throws DBALException*/
     public function findLocationWithId(int $id): array
     {
-        return $this->connection->executeQuery('SELECT * FROM locations WHERE id = ?', [$id])->fetch();
-    }
-
-    /** @throws \Doctrine\DBAL\DBALException*/
-    public function findAllReviews(): array
-    {
-        return $this->connection->executeQuery('SELECT * FROM reviews')->fetchAll();
-    }
-
-    /** @throws \Doctrine\DBAL\DBALException*/
-    public function findAllStations(): array
-    {
-        return $this->connection->executeQuery('SELECT * FROM stations')->fetchAll();
+        return $this->connection->executeQuery('SELECT * FROM locations WHERE id = ?', [$id])->fetchAssociative();
     }
 }
