@@ -8,6 +8,7 @@ namespace ComPHPPuebla\Fixtures;
 
 use ComPHPPuebla\Fixtures\Database\DBALConnection;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 class FixtureTest extends TestCase
 {
@@ -48,6 +49,23 @@ class FixtureTest extends TestCase
         $state = $database->findStateWithUrl('puebla');
 
         $this->assertNotFalse($state);
+    }
+
+    /**
+     * @test
+     * @dataProvider databaseConnections
+     */
+    public function it_can_generate_uuid(ConnectionFactory $factory)
+    {
+        $connection = $factory->connect();
+        $fixtures = new Fixture(new DBALConnection($connection));
+        $database = new TestDatabase($connection);
+
+        $fixtures->load("$this->path/fixture-with-generated-uuid.yml", 'station');
+
+        $station = $database->findStationNamed('uuid');
+
+        $this->assertTrue(Uuid::isValid($station['location']));
     }
 
     /**

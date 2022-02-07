@@ -11,6 +11,8 @@ use ComPHPPuebla\Fixtures\Database\Row;
 use ComPHPPuebla\Fixtures\Loaders\CachingYamlLoader;
 use ComPHPPuebla\Fixtures\Loaders\Loader;
 use ComPHPPuebla\Fixtures\Loaders\YamlLoader;
+use ComPHPPuebla\Fixtures\Processors\PreProcessor;
+use ComPHPPuebla\Fixtures\Processors\UuidGenerator;
 
 class Fixture
 {
@@ -20,12 +22,17 @@ class Fixture
     /** @var Connection */
     private $connection;
 
+    /** @var PreProcessor[] */
+    private $preProcessors;
+
     public function __construct(
         Connection $connection,
-        Loader $loader = null
+        Loader $loader = null,
+        array $preProcessors = []
     ) {
         $this->connection = $connection;
         $this->loader = $loader ?? new CachingYamlLoader(new YamlLoader());
+        $this->setProcessors($preProcessors);
     }
 
     public function loadAll(string $pathToFixturesFile): void
@@ -54,7 +61,25 @@ class Fixture
     {
         $primaryKey = $this->connection->primaryKeyOf($table);
         foreach ($rows as $identifier => $row) {
-            $this->connection->insert($table, (new Row($primaryKey, $identifier, $row)));
+            $this->processRow($table, new Row($primaryKey, $identifier, $row));
         }
+    }
+
+
+    private function processRow(string $table, Row $row): void
+    {
+        foreach ($this->preProcessors as $processor) {
+            $processor->beforeInsert($row);
+        }
+
+        $this->connection->insert($table, $row);
+    }
+
+    /**
+     * @param PreProcessor[] $preProcessors
+     */
+    private function setProcessors(array $preProcessors): void
+    {
+        $this->preProcessors = array_merge($preProcessors, [new UuidGenerator()]);
     }
 }
