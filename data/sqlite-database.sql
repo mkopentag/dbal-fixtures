@@ -17,6 +17,7 @@ CREATE TABLE stations (
 CREATE TABLE states (
     url VARCHAR(500) NOT NULL,
     name VARCHAR(500) NOT NULL,
+    is_enabled BOOLEAN,
     PRIMARY KEY(url)
 );
 

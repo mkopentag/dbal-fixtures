@@ -1,0 +1,9 @@
+table: states
+items:
+    state_1:
+        url: "puebla"
+        name: "Puebla"
+    enabled_state:
+        url: "enabled"
+        name: "enabled"
+        is_enabled: true

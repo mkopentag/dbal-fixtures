@@ -21,7 +21,9 @@ class Row
     {
         $this->primaryKeyColumn = $primaryKeyColumn;
         $this->identifier = $identifier;
-        $this->values = $values;
+        $this->values = \array_map(function ($val) {
+            return null === $val ? null : (string) $val;
+        }, $values);
     }
 
     /**

@@ -14,19 +14,14 @@ class YamlLoaderTest extends TestCase
     /** @test */
     public function it_reads_and_parses_a_fixture_file()
     {
-        $states = [
-            'table' => 'states',
-            'items' => [
-                'state_1' => [
-                    'url' => 'puebla',
-                    'name' => 'Puebla',
-                ]
-            ]
-        ];
         $loader = new YamlLoader(new Parser());
 
-        $loadedStates = $loader->load(__DIR__ . '/../../../data/fixture-with-id.yml');
+        $loadedStates = $loader->load(__DIR__ . '/../../../data/states.yml');
 
-        $this->assertEquals($states, $loadedStates);
+        $this->assertEquals('states', $loadedStates['table']);
+        $this->assertEquals([
+            'url' => 'puebla',
+            'name' => 'Puebla',
+        ] , $loadedStates['items']['state_1']);
     }
 }

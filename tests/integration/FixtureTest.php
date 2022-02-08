@@ -44,7 +44,7 @@ class FixtureTest extends TestCase
         $fixtures = new Fixture(new DBALConnection($connection));
         $database = new TestDatabase($connection);
 
-        $fixtures->load("$this->path/fixture-with-id.yml", 'state_1');
+        $fixtures->load("$this->path/states.yml", 'state_1');
 
         $state = $database->findStateWithUrl('puebla');
 
