@@ -1,4 +1,5 @@
-roles:
+table: roles
+items:
     role_1:
         name: "admin"
-        parent_role: null
+        parent_role: ~

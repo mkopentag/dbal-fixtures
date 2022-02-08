@@ -28,12 +28,12 @@ class LoadFixtureCommandTest extends TestCase
         $helperSet = new HelperSet();
         $helperSet->set(new ConnectionHelper($factory->connect()), 'db');
         $command->setHelperSet($helperSet);
-        $input = new ArrayInput(['file' => __DIR__ . '/../../../data/fixture-all.yml']);
+        $input = new ArrayInput(['file' => __DIR__ . '/../../../data/fixture.yml']);
         $output = new BufferedOutput();
 
         $statusCode = $command->run($input, $output);
 
         $this->assertEquals(0, $statusCode);
-        $this->assertRegExp('/fixture\-all\.yml/', $output->fetch());
+        $this->assertRegExp('/fixture\.yml/', $output->fetch());
     }
 }

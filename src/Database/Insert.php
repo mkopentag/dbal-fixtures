@@ -25,11 +25,11 @@ class Insert
     public function toSQL(Connection $connection, bool $withReturningField = false): string
     {
         return sprintf(
-            'INSERT INTO %s (%s) VALUES (%s) %s',
+            'INSERT INTO %s (%s) VALUES (%s)%s',
             $this->table,
             implode(', ', $this->quoteIdentifiers($connection)),
             implode(', ', $this->row->placeholders()),
-            $withReturningField ? sprintf('RETURNING %s', $this->row->getPrimaryKeyColumn()) : ''
+            $withReturningField ? sprintf(' RETURNING %s', $this->row->getPrimaryKeyColumn()) : ''
         );
     }
 

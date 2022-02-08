@@ -1,7 +1,7 @@
 table: stations
 items:
     station_1:
-        name: "CASMEN GASOL"
+        name: "name_1"
         social_reason: "CASMEN SA CV"
         address_line_1: "23 PTE NO 711"
         address_line_2: "EL CARMEN"
@@ -11,7 +11,7 @@ items:
         created_at: "2013-10-06 00:00:00"
         last_updated_at: "2013-10-06 00:00:00"
     station_2:
-        name: "COMBUSTIBLES JV"
+        name: "name_2"
         social_reason: "COMBUSTIBLES JV SA CV"
         address_line_1: "24 SUR NO 507"
         address_line_2: "CENTRO"

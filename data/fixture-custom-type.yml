@@ -1,4 +1,5 @@
-locations:
+table: locations
+items:
     location_1:
         id: 1
-        coordinates: "`PointFromText('POINT(${latitude} ${longitude})')`"
+        coordinates: "`PointFromText('POINT(77.147489 86.211205)')`"

@@ -16,17 +16,6 @@ CREATE TABLE IF NOT EXISTS stations (
 
 TRUNCATE TABLE stations;
 
-CREATE TABLE IF NOT EXISTS reviews (
-    review_id INT NOT NULL AUTO_INCREMENT,
-    comment VARCHAR(500) NOT NULL,
-    stars INT NOT NULL,
-    station_id INT NOT NULL,
-    PRIMARY KEY(review_id),
-    FOREIGN KEY(station_id) REFERENCES station(station_id)
-);
-
-TRUNCATE TABLE reviews;
-
 CREATE TABLE IF NOT EXISTS states (
     url VARCHAR(500) NOT NULL,
     name VARCHAR(500) NOT NULL,

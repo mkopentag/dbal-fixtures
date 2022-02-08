@@ -55,7 +55,9 @@ HELP
             "Processing file '<info>%s</info>'... ",
             $filename
         ));
-        (new Fixture($connection))->load($filename);
+        (new Fixture($connection))->loadAll($filename);
+
+        return Command::SUCCESS;
     }
 
     /**

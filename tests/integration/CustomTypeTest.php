@@ -23,7 +23,7 @@ class CustomTypeTest extends TestCase
         $database = new TestDatabase($dbalConnection);
         $fixtures = new Fixture($connection);
 
-        $fixtures->load(__DIR__ . '/../../data/fixture-custom-type.yml');
+        $fixtures->loadAll(__DIR__ . '/../../data/fixture-custom-type.yml');
 
         $location = $database->findLocationWithId(1);
         $coordinates = unpack('x/x/x/x/corder/Ltype/dlat/dlon', $location['coordinates']);

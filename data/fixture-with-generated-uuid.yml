@@ -1,0 +1,12 @@
+table: stations
+items:
+    station:
+        name: "uuid"
+        social_reason: "CASMEN SA CV"
+        address_line_1: "23 PTE NO 711"
+        address_line_2: "EL CARMEN"
+        location: ${uuid}
+        latitude: 19.03817
+        longitude: -98.20737
+        created_at: "2013-10-06 00:00:00"
+        last_updated_at: "2013-10-06 00:00:00"
